@@ -28,6 +28,7 @@ const BackgroundLayer = L.GridLayer.extend({
         tile.src = './images/mapbg.png';
         tile.style.width = '100%';
         tile.style.height = '100%';
+        tile.style.imageRendering = 'pixelated'; // Better performance for pixel art
         return tile;
     }
 });
@@ -108,13 +109,13 @@ const GridLayer = L.GridLayer.extend({
         const tileSize = this.getTileSize();
         tile.width = tileSize.x;
         tile.height = tileSize.y;
-        
+
         const ctx = tile.getContext('2d');
-        
+
         // Draw grid with transparency
         ctx.strokeStyle = '#333333';
         ctx.lineWidth = 1;
-        
+
         var gridsize = 64;
 
         // Draw vertical lines
@@ -124,7 +125,7 @@ const GridLayer = L.GridLayer.extend({
             ctx.lineTo(i, tileSize.y);
             ctx.stroke();
         }
-        
+
         // Draw horizontal lines
         for (let i = 0; i <= tileSize.y; i += gridsize) {
             ctx.beginPath();
@@ -132,15 +133,15 @@ const GridLayer = L.GridLayer.extend({
             ctx.lineTo(tileSize.x, i);
             ctx.stroke();
         }
-        
+
         return tile;
     }
 });
 
-// Add grid layer on top of the background with updateWhenZooming disabled
+// Add grid layer on top of the background with updateWhenIdle enabled for better performance
 new GridLayer({
     updateWhenZooming: false,
-    updateWhenIdle: false
+    updateWhenIdle: true
 }).addTo(map);
 
 // Store markers for easy access
