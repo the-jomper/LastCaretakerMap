@@ -516,6 +516,7 @@ function addMarkersToMap(locations, locationCategory = 'regular') {
         const secondaryNum = location.secondaryNumber || location.secondaryNumbers;
         marker.bindPopup(() => {
             const state = getVisitState(location.id);
+            const notes = localStorage.getItem(`location-notes-${location.id}`) || '';
             return `
                 <div class="popup-content">
                     <h3>${location.name}</h3>
@@ -527,6 +528,10 @@ function addMarkersToMap(locations, locationCategory = 'regular') {
                         <span class="visit-icon">${VISIT_ICONS[state]}</span>
                         <span class="visit-text">${VISIT_LABELS[state]}</span>
                     </button>
+                    <div class="notes-section">
+                        <label for="notes-${location.id}">Notes:</label>
+                        <textarea id="notes-${location.id}" class="location-notes" data-location-id="${location.id}" placeholder="Add your notes here...">${notes}</textarea>
+                    </div>
                     <p><small class="locid">(id: ${location.id})&nbsp;&nbsp;(gameid: ${location.gameid})</small></p>
                 </div>
             `;
@@ -544,6 +549,21 @@ function addMarkersToMap(locations, locationCategory = 'regular') {
                     updateMarkerVisitOverlay(location.id, newState);
                     updateSidebarVisitIcon(location.id, newState);
                 });
+            }
+
+            // Setup notes textarea
+            const notesTextarea = e.popup.getElement().querySelector('.location-notes');
+            if (notesTextarea) {
+                notesTextarea.addEventListener('input', () => {
+                    localStorage.setItem(`location-notes-${location.id}`, notesTextarea.value);
+                    // Auto-grow the textarea
+                    notesTextarea.style.height = 'auto';
+                    notesTextarea.style.height = notesTextarea.scrollHeight + 'px';
+                });
+
+                // Initial height calculation
+                notesTextarea.style.height = 'auto';
+                notesTextarea.style.height = notesTextarea.scrollHeight + 'px';
             }
         });
 

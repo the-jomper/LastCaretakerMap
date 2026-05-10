@@ -302,5 +302,126 @@ if (allWhiteButton) {
     });
 }
 
+// Export data
+const exportDataButton = document.getElementById('export-data-button');
+if (exportDataButton) {
+    exportDataButton.addEventListener('click', () => {
+        try {
+            const allLocations = [...locations, ...hiddenLocations, ...lastListenerLocations, ...caves];
+            const dataToExport = {};
+
+            // Export all location-specific data
+            allLocations.forEach(location => {
+                dataToExport[`marker-visible-${location.id}`] = localStorage.getItem(`marker-visible-${location.id}`);
+                dataToExport[`location-visit-${location.id}`] = localStorage.getItem(`location-visit-${location.id}`);
+                dataToExport[`location-notes-${location.id}`] = localStorage.getItem(`location-notes-${location.id}`);
+            });
+
+            // Export category visibility states
+            dataToExport['category-visible-main-locations'] = localStorage.getItem('category-visible-main-locations');
+            dataToExport['category-visible-hidden-locations'] = localStorage.getItem('category-visible-hidden-locations');
+            dataToExport['category-visible-last-listener-locations'] = localStorage.getItem('category-visible-last-listener-locations');
+            dataToExport['category-visible-caves-locations'] = localStorage.getItem('category-visible-caves-locations');
+
+            // Export settings
+            dataToExport['show-hidden-locations'] = localStorage.getItem('show-hidden-locations');
+            dataToExport['show-last-listener'] = localStorage.getItem('show-last-listener');
+            dataToExport['show-caves'] = localStorage.getItem('show-caves');
+            dataToExport['show-primary-numbers'] = localStorage.getItem('show-primary-numbers');
+            dataToExport['show-visit-overlays'] = localStorage.getItem('show-visit-overlays');
+            dataToExport['use-solid-background'] = localStorage.getItem('use-solid-background');
+            dataToExport['background-color'] = localStorage.getItem('background-color');
+            dataToExport['show-cloth-map'] = localStorage.getItem('show-cloth-map');
+
+            // Export marker colors
+            Object.keys(defaultMarkerColors).forEach(type => {
+                const color = localStorage.getItem(`marker-color-${type}`);
+                if (color) {
+                    dataToExport[`marker-color-${type}`] = color;
+                }
+            });
+
+            // Export cloth map settings
+            dataToExport['cloth-map-msz'] = localStorage.getItem('cloth-map-msz');
+            dataToExport['cloth-map-xmod'] = localStorage.getItem('cloth-map-xmod');
+            dataToExport['cloth-map-ymod'] = localStorage.getItem('cloth-map-ymod');
+            dataToExport['cloth-map-rotation'] = localStorage.getItem('cloth-map-rotation');
+
+            // Create and download JSON file
+            const dataStr = JSON.stringify(dataToExport, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `caretaker-map-data-${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'data_export');
+            }
+        } catch (err) {
+            console.error('Export error:', err);
+            alert('Error exporting data. Check console for details.');
+        }
+    });
+}
+
+// Import data
+const importDataButton = document.getElementById('import-data-button');
+const importFileInput = document.getElementById('import-file-input');
+if (importDataButton && importFileInput) {
+    importDataButton.addEventListener('click', () => {
+        importFileInput.click();
+    });
+
+    importFileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            try {
+                const importedData = JSON.parse(event.target.result);
+
+                if (confirm('Import data? This will overwrite your current preferences.')) {
+                    // Clear existing data first
+                    const allLocations = [...locations, ...hiddenLocations, ...lastListenerLocations, ...caves];
+                    allLocations.forEach(location => {
+                        localStorage.removeItem(`marker-visible-${location.id}`);
+                        localStorage.removeItem(`location-visit-${location.id}`);
+                        localStorage.removeItem(`location-notes-${location.id}`);
+                    });
+
+                    Object.keys(defaultMarkerColors).forEach(type => {
+                        localStorage.removeItem(`marker-color-${type}`);
+                    });
+
+                    // Import all data
+                    Object.keys(importedData).forEach(key => {
+                        if (importedData[key] !== null) {
+                            localStorage.setItem(key, importedData[key]);
+                        }
+                    });
+
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'data_import');
+                    }
+                    window.location.reload();
+                }
+            } catch (err) {
+                console.error('Import error:', err);
+                alert('Error importing data. Please check the file format.');
+            }
+        };
+        reader.readAsText(file);
+
+        // Reset the input so the same file can be imported again
+        importFileInput.value = '';
+    });
+}
+
 // Apply background style on page load (delayed to ensure proper initialization)
 requestAnimationFrame(() => applyBackgroundStyle());
