@@ -529,6 +529,15 @@
               "latitude":  -74,
               "type":  "Silo",
               "gameid":  "SiloA"
+            },
+            {
+              "name":  "MCV-12 Eternal Flame (South)",
+              "id":  "54",
+              "description":  "MCV-12 Eternal Flame (South) is a silo only accessible via Gyrocopter.",
+              "longitude":  89,
+              "latitude":  47,
+              "type":  "Silo",
+              "gameid":  "SiloA"
             }
           ],
   "hiddenLocations": [
