@@ -5,6 +5,7 @@ console.log("Starting Last Caretaker Map...");
 
 const app = spawn('npm', ['run', 'preview', '--', '--host', '--port', '3000'], {
     stdio: 'inherit',
+    detached: true,
     env: env
 });
 
