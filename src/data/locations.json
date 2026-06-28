@@ -542,7 +542,7 @@
             {
               "name":  "Resarch Outpost Theta-9",
               "id":  "55",
-              "description":  "is deep under the water",
+              "description":  "Is deep under the water.",
               "longitude":  52,
               "latitude":  -34,
               "type":  "ResarchOutpost",
@@ -761,11 +761,29 @@
               {
                 "name": "Pishon",
                 "id": "h21",
-                "description": "Pishon is the platform whare you well build the Eden Frame",
+                "description": "Pishon is the platform whare you well build the Eden Frame.",
                 "longitude": 125,
                 "latitude": -3,
                 "type": "Pishon",
                 "gameid": "Pishon"
+              },
+              {
+                "name": "The Spire Of Industry",
+                "id": "h22",
+                "description": "Statue on top of a very tall rocky spire.",
+                "longitude": 81,
+                "latitude": -94,
+                "type": "Spire",
+                "gameid": "SpireA"
+              },
+              {
+                "name": "The Spire Of Exodus",
+                "id": "h23",
+                "description": "Statue on top of a very tall rocky spire.",
+                "longitude": 182,
+                "latitude": -38,
+                "type": "Spire",
+                "gameid": "SpireB"
               }
             ],
   "lastListenerLocations": [
