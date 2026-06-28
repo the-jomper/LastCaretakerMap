@@ -22,5 +22,8 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets'
+  },
+  preview: {
+    allowedHosts: ture
   }
 })
