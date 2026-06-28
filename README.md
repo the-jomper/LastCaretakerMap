@@ -8,6 +8,8 @@ For your viewing pleasure: https://the1killer.github.io/LastCaretakerMap/
 
 <img width="529" height="326" alt="tlc-map" src="https://github.com/user-attachments/assets/3c27b5f5-8a32-4344-9140-ac96625547b5" />
 
+## Disclaimer
+This version's code is partly made with AI.
 
 ## Features
 
@@ -16,6 +18,7 @@ For your viewing pleasure: https://the1killer.github.io/LastCaretakerMap/
 - 🔍 Click locations to zoom and view details
 - 📱 Responsive design for mobile and desktop
 - ⚡ Fast development with Vite and HMR
+- 🖥️ Worsk whif [AMP](https://cubecoders.com/AMP)
 
 ### Future plans/hopes
 
