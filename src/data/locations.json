@@ -760,7 +760,7 @@
               },
               {
                 "name": "Pishon",
-                "id": "h21",
+                "id": "h25",
                 "description": "Pishon is the platform whare you well build the Eden Frame.",
                 "longitude": 125,
                 "latitude": -3,
@@ -769,7 +769,7 @@
               },
               {
                 "name": "The Spire Of Industry",
-                "id": "h22",
+                "id": "h26",
                 "description": "Statue on top of a very tall rocky spire.",
                 "longitude": 81,
                 "latitude": -94,
@@ -778,12 +778,21 @@
               },
               {
                 "name": "The Spire Of Exodus",
-                "id": "h23",
+                "id": "h27",
                 "description": "Statue on top of a very tall rocky spire.",
                 "longitude": 182,
                 "latitude": -38,
                 "type": "Spire",
                 "gameid": "SpireB"
+              },
+              {
+                "name": "The Spire Of Command",
+                "id": "h28",
+                "description": "Statue on top of a very tall rocky spire.",
+                "longitude": 20,
+                "latitude": 46,
+                "type": "Spire",
+                "gameid": "SpireC"
               }
             ],
   "lastListenerLocations": [
