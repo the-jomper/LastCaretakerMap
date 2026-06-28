@@ -24,6 +24,6 @@ export default defineConfig({
     assetsDir: 'assets'
   },
   preview: {
-    allowedHosts: ture
+    allowedHosts: true
   }
 })
