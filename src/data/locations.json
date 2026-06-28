@@ -538,6 +538,15 @@
               "latitude":  47,
               "type":  "Silo",
               "gameid":  "SiloA"
+            },
+            {
+              "name":  "Resarch Outpost Theta-9",
+              "id":  "55",
+              "description":  "is deep under the water",
+              "longitude":  52,
+              "latitude":  -34,
+              "type":  "ResarchOutpost",
+              "gameid":  "ResarchOutpostA"
             }
           ],
   "hiddenLocations": [
@@ -748,6 +757,15 @@
                 "latitude": -2,
                 "type": "StarChild",
                 "gameid": "StarChildA"
+              },
+              {
+                "name": "Pishon",
+                "id": "h21",
+                "description": "Pishon is the platform whare you well build the Eden Frame",
+                "longitude": 125,
+                "latitude": -3,
+                "type": "Pishon",
+                "gameid": "Pishon"
               }
             ],
   "lastListenerLocations": [
