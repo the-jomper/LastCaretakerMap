@@ -1,9 +1,11 @@
 const { spawn } = require('child_process');
 
+const env = Object.assign({}, process.env, { BROWSER: 'none' });
 console.log("Starting Last Caretaker Map...");
 
 const app = spawn('npm', ['run', 'preview', '--', '--host', '--port', '3000'], {
     stdio: 'inherit',
+    env: env
     detached: true 
 });
 
