@@ -1,12 +1,10 @@
 const { spawn } = require('child_process');
 
-console.log("Starting Last Caretaker Map via npm...");
-
-const env = Object.assign({}, process.env, { BROWSER: 'none' });
+console.log("Starting Last Caretaker Map...");
 
 const app = spawn('npm', ['run', 'preview', '--', '--host', '--port', '3000'], {
     stdio: 'inherit',
-    env: env
+    detached: true 
 });
 
 app.on('close', (code) => {
@@ -14,12 +12,14 @@ app.on('close', (code) => {
     process.exit(code || 0);
 });
 
-process.on('SIGTERM', () => {
-    console.log("Received stop signal (SIGTERM) from AMP. Shutting down the server safely...");
-    app.kill('SIGTERM');
-});
+const stopServer = () => {
+    console.log("Shutting down the server process tree...");
+    try {
+        process.kill(-app.pid, 'SIGTERM');
+    } catch (e) {
+        app.kill('SIGTERM');
+    }
+};
 
-process.on('SIGINT', () => {
-    console.log("Received stop signal (SIGINT). Shutting down the server safely...");
-    app.kill('SIGINT');
-});
+process.on('SIGTERM', stopServer);
+process.on('SIGINT', stopServer);
