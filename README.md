@@ -40,20 +40,14 @@ For your viewing pleasure: https://the1killer.github.io/LastCaretakerMap/
 
 ### Running the Application
 
-1. **Development mode (with hot reload):**
-   ```bash
-   npm run dev
-   ```
-   The app will automatically open at `http://localhost:3000`
-
-2. **Build for production:**
+1. **Build for production:**
    ```bash
    npm run build
    ```
 
-3. **Preview production build:**
+2. **Preview production build:**
    ```bash
-   npm run preview
+   npm run preview -- --host --port 3000
    ```
 
 ## Project Structure
@@ -72,23 +66,35 @@ lastcaretakermap/
 
 ## Data Format
 
-The application reads location data from `data.json`. Each location should have:
+The application reads types type images from folder `public/images`. Each image should be:
+
+Format: .png
+Size: 512x512 px
+Have a unique name
+
+The application reads location types from `src/data/types.json`. Each type should have:
+
+```json
+"Type Name": ".png name of type under public/images"
+```
+
+The application reads location data from `src/data/locations.json`. Each location should have:
 
 ```json
 {
   "name": "Location Name",
   "id": "unique-id",
   "description": "Location description",
-  "latitude": 0.0,
   "longitude": 0.0,
-  "image": "optional-image.png"
+  "latitude": 0.0,
+  "type": "Type name",
+  "gameid": "id"
 }
 ```
 
 ## Customization
 
 - **Map Style**: Change the tile layer in `main.js` to use different map styles
-- **Marker Icons**: Modify the `customIcon` configuration in `main.js`
 - **Colors**: Update the gradient colors in `styles.css`
 - **Initial View**: Adjust the `setView()` parameters in `main.js`
 
