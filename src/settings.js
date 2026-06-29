@@ -28,7 +28,10 @@ const defaultMarkerColors = {
     StarChild: '#E61CE6',
     RollerFactory: '#E61CE6',
     GyroPlatform: '#ff9900',
-    Silo: '#ff9900'
+    Silo: '#ff9900',
+	Pishon: '#ffffff',
+	ResarchOutpost: '#ffffff',
+	Spire: '#ffffff'
 };
 
 // Friendly display names for types
@@ -51,7 +54,10 @@ const typeDisplayNames = {
     StarChild: 'Star Child',
     RollerFactory: 'Roller Factory',
     GyroPlatform: 'Gyro Platform',
-    Silo: 'Silo'
+    Silo: 'Silo',
+	Pishon: "Pishon",
+	ResarchOutpost: "Resarch outpost",
+	Spire: "Spire"
 };
 
 // Get the marker color for a given type, checking user overrides first
