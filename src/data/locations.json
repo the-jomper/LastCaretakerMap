@@ -741,15 +741,6 @@
                 "gameid": "QuarantineStackDawn"
               },
               {
-                "name": "Statue Rocky Spire",
-                "id": "h18",
-                "description": "Statue on top of a very tall rocky spire.",
-                "longitude": 183,
-                "latitude": -38,
-                "type": "RockySpire",
-                "gameid": "StatueRockySpire"
-              },
-              {
                 "name": "Courier Sieve Node Facility",
                 "id": "h20",
                 "description": "Courier Sieve Node Facility is a location for Star Child.",
