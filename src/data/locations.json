@@ -1017,7 +1017,7 @@
           {
             "name": "The Forth Chamber",
             "id": "c9",
-            "description": "Hidden Unmarked Cave is a cave. Entrance at 115m depth. Not marked in game even after visiting.",
+            "description": "The Forth Chamber is a cave. Entrance at 123m depth. Max depth 153m",
             "longitude": 109,
             "latitude": -34,
             "type": "Cave",
